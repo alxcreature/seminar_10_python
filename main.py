@@ -14,4 +14,12 @@ random.shuffle(lst)
 data = pd.DataFrame({'whoAmI':lst})
 data.head()
 
+# Внесение дополнительного кода решения согласно поставленной задачи
+data.loc[data['whoAmI'] == 'robot', 'robot'] = '1'
+data.loc[data['whoAmI'] == 'human', 'human'] = '1'
+data.loc[(data['whoAmI'] == 'robot') & (data['robot'] == '1'), 'human'] = '0'
+data.loc[(data['whoAmI'] == 'human') & (data['human'] == '1'), 'robot'] = '0'
+data.drop('whoAmI', axis=1, inplace=True)
+
+
 print(data)
